@@ -1,7 +1,5 @@
 # Battery curve-fitting agent
 
-*Generative AI course project (CPSC 57900), Lewis University · 2026*
-
 **Problem.** Fitting capacity-fade curves across a large set of cells and spotting the unusual ones is slow, repetitive work that researchers usually do by hand.
 
 **What I did.**

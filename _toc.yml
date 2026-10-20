@@ -3,10 +3,9 @@ root: intro
 parts:
   - caption: Projects
     chapters:
-      - file: projects/ukf-joint-estimation
-      - file: projects/moirae
-      - file: projects/battery-fit-agent
       - file: projects/fastcharge-classification
+      - file: projects/qm7-energy-classification
+      - file: projects/battery-fit-agent
       - file: projects/patent-analytics
       - file: projects/silicon-photonics
   - caption: About

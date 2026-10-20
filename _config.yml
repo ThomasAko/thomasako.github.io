@@ -22,3 +22,10 @@ sphinx:
     html_show_copyright: true
     html_theme_options:
       show_toc_level: 2
+
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - linkify
+    - substitution
+    - tasklist

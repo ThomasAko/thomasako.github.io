@@ -13,7 +13,7 @@
 
 **Physics-informed machine learning for battery diagnostics.**
 
-I'm a data scientist in the Data Science and Learning division at **Argonne National Laboratory**, where I build state and parameter estimators for lithium-ion batteries on the DOE ROVI/ACCESS program and a NASA-funded consortium on batteries for drones and eVTOL aircraft.
+I'm a data scientist in the Data Science and Learning division at **Argonne National Laboratory**, where I develop AI/ML models for lithium-ion battery diagnostics and prognostics.
 
 My path here is unusual. I hold a **PhD in Electrical Engineering from Ghent University** (integrated silicon photonics). After that I spent several years in **test and measurement**: photonics test engineering at IMEC, then applications and technical sales roles at Keysight, Sofics and Dennemeyer. I then worked as a **patent examiner at the European Patent Office**, where I examined more than 100 applications in electrical test and measurement from companies including Airbus, Texas Instruments, CATL and LG. Through all of it, the common thread has been measurement, the physics behind a signal, and turning noisy data into decisions.
 
@@ -21,8 +21,9 @@ I complete an **MS in Data Science** at Lewis University in December 2026.
 
 ## What I work on
 
-- **Battery state estimation:** Unscented Kalman filters for joint state-parameter estimation, information-theoretic bounds (posterior Cramér–Rao), and hybrid filter + neural-network estimators
-- **Agentic tools for science:** LLM agents that automate repetitive analysis steps in battery research
+- **Battery diagnostics and prognostics:** physics-informed ML, state estimation and early-life prediction of degradation
+- **Physics-informed ML more broadly:** building physical constraints into models, and testing honestly whether they help
+- **Agentic tools for science:** LLM agents that automate repetitive analysis steps
 - **Patent and technology analytics:** search, ranking and technical analysis of patents in batteries, BMS and photonics
 
 ## Featured projects
@@ -30,22 +31,24 @@ I complete an **MS in Data Science** at Lewis University in December 2026.
 ::::{grid} 1 1 2 3
 :gutter: 3
 
-:::{grid-item-card} Joint state-parameter estimation for LFP cells
-:link: projects/ukf-joint-estimation
+:::{grid-item-card} Predicting battery life from 100 cycles
+:link: projects/fastcharge-classification
 :link-type: doc
-UKF estimation with posterior Cramér–Rao bounds on a 144-cell synthetic population.
+:img-top: _static/figs/battery/deltaq_vs_life.png
+27 GB of cycling data → 32 physics features → ROC-AUC 0.954, with every early degrader in the test set caught.
+:::
+
+:::{grid-item-card} Physics-constrained molecular energy classification
+:link: projects/qm7-energy-classification
+:link-type: doc
+:img-top: _static/figs/qm7/coulomb_matrix.png
+Coulomb matrices, neural networks and a virial-theorem loss on 7,165 molecules.
 :::
 
 :::{grid-item-card} Battery curve-fitting agent
 :link: projects/battery-fit-agent
 :link-type: doc
 LangGraph + local Llama agent that fits capacity-fade curves and flags outlier cells.
-:::
-
-:::{grid-item-card} Moirae / auto-soh
-:link: projects/moirae
-:link-type: doc
-Contributions to Argonne's open-source battery state-of-health framework.
 :::
 
 ::::

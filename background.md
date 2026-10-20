@@ -2,7 +2,7 @@
 
 | Period | Role |
 |---|---|
-| 2025–present | **Data scientist**, Data Science and Learning division, Argonne National Laboratory |
+| 2025–present | **Data scientist**, Data Science and Learning division, Argonne National Laboratory: AI/ML models for lithium-ion battery diagnostics and prognostics |
 | 2025–2026 | **MS in Data Science**, Lewis University (December 2026) |
 | TODO | **Patent examiner**, European Patent Office, electrical test and measurement |
 | TODO | **Applications / technical sales**, Keysight Technologies: high-speed digital and quantum instrumentation |
