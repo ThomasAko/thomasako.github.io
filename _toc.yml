@@ -1,0 +1,16 @@
+format: jb-book
+root: intro
+parts:
+  - caption: Projects
+    chapters:
+      - file: projects/ukf-joint-estimation
+      - file: projects/moirae
+      - file: projects/battery-fit-agent
+      - file: projects/fastcharge-classification
+      - file: projects/patent-analytics
+      - file: projects/silicon-photonics
+  - caption: About
+    chapters:
+      - file: background
+      - file: publications
+      - file: cv
