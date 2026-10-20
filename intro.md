@@ -1,9 +1,8 @@
 # Thomas Ako, PhD
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/TODO)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/thomas8ako5/)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/ThomasAko)
-[![Google Scholar](https://img.shields.io/badge/Google%20Scholar-4285F4?logo=googlescholar&logoColor=white)](https://scholar.google.com/TODO)
-[![Email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:TODO)
+[![Google Scholar](https://img.shields.io/badge/Google%20Scholar-4285F4?logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=1bh6tdIAAAAJ&hl=en&authuser=1)
 [![CV](https://img.shields.io/badge/CV-PDF-555555)](cv.md)
 
 ```{image} _static/profile.jpg
@@ -53,4 +52,4 @@ Contributions to Argonne's open-source battery state-of-health framework.
 
 ## Get in touch
 
-I'm open to conversations about battery analytics, physics-informed ML, and technical patent advisory. The fastest way to reach me is [email](mailto:TODO) or [LinkedIn](https://www.linkedin.com/in/TODO).
+I'm open to conversations about battery analytics, physics-informed ML, and technical patent advisory. The fastest way to reach me is [email](mailto:TODO) or [LinkedIn](https://www.linkedin.com/in/thomas8ako5/).
