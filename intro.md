@@ -38,11 +38,11 @@ I complete an **MS in Data Science** at Lewis University in December 2026.
 27 GB of cycling data → 32 physics features → ROC-AUC 0.954, with every early degrader in the test set caught.
 :::
 
-:::{grid-item-card} Physics-constrained molecular energy classification
+:::{grid-item-card} Physics constraints for molecular ML: QM7 → QM9
 :link: projects/qm7-energy-classification
 :link-type: doc
 :img-top: _static/figs/qm7/coulomb_matrix.png
-Coulomb matrices, neural networks and a virial-theorem loss on 7,165 molecules.
+Why a virial-theorem loss couldn't bind on QM7, and testing a NeurIPS 2025 energy loss on QM9 instead.
 :::
 
 :::{grid-item-card} Battery curve-fitting agent
