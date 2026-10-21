@@ -10,6 +10,7 @@
 :width: 200px
 :align: right
 ```
+
 **Physics-informed machine learning for battery diagnostics.**
 
 I'm a data scientist in the Data Science and Learning division at **Argonne National Laboratory**, where I develop AI/ML models for lithium-ion battery diagnostics and prognostics.
