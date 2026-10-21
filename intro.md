@@ -5,7 +5,8 @@
 [![Google Scholar](https://img.shields.io/badge/Google%20Scholar-4285F4?logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=1bh6tdIAAAAJ&hl=en&authuser=1)
 [![CV](https://img.shields.io/badge/CV-PDF-555555)](cv.md)
 
-```{image} _static/profile.jpg
+```<img width="460" height="460" alt="image" src="https://github.com/user-attachments/assets/e5d2ae15-f18a-418a-a362-ca259bab49b1" />
+
 :alt: Thomas Ako
 :width: 200px
 :align: right
