@@ -18,7 +18,7 @@
 :align: center
 ```
 
-**Setup.** QM7 holds 7,165 small molecules with DFT atomization energies. Each molecule is encoded as a **Coulomb matrix**: the diagonal holds the atomic self-energies (0.5·Z^2.4) and the off-diagonal entries the nuclear repulsion between atom pairs (ZᵢZⱼ/|Rᵢ−Rⱼ|). I flattened each matrix into 529 standardized features and classified molecules as above or below the training-set median energy, using DeepChem's train/validation/test sets (5,470 / 684 / 684).
+**Setup.** QM7 holds 7,165 small molecules with DFT atomization energies. Each molecule is encoded as a **Coulomb matrix**: the diagonal holds the atomic self-energies (0.5·Z^2.4) and the off-diagonal entries the nuclear repulsion between atom pairs (ZᵢZⱼ/|Rᵢ−Rⱼ|). I flattened each matrix into 529 standardized features and classified molecules as above or below the training-set median energy. DeepChem's loader keeps 6,838 of the 7,165 molecules (RDKit rejects about 330 charged species) and splits them **randomly** into train/validation/test sets of 5,470 / 684 / 684.
 
 **Models.**
 
