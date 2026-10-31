@@ -11,13 +11,13 @@
 :align: right
 ```
 
-**Physics-informed machine learning for battery diagnostics.**
+**Physics-informed machine learning for batteries and other physical systems**
 
-Welcome!I am a research engineer and data scientist in the Data Science and Learning division at [Argonne National Laboratory](https://www.anl.gov), where I develop AI/ML models for lithium-ion battery diagnostics and prognostics. I received a master's degree in Electrical Engineering from the [Royal Institute of Technology (KTH)](https://www.kth.se/en), Stockholm, Sweden and a Ph.D. in Electrical Engineering from [Ghent University](https://www.ugent.be/en), Ghent, Belgium. I am completing a master's in Data Science this December, at [Lewis University](https://www.lewisu.edu) in Romeoville, Illinois, USA. 
+Welcome! I am a data scientist in the Data Science and Learning division at [Argonne National Laboratory](https://www.anl.gov), where I develop AI/ML models for lithium-ion battery diagnostics and prognostics. I hold an M.Sc. in Electrical Engineering from [KTH Royal Institute of Technology](https://www.kth.se/en) in Stockholm and a Ph.D. in Electrical Engineering from [Ghent University](https://www.ugent.be/en) in Belgium, and I complete an M.S. in Data Science at [Lewis University](https://www.lewisu.edu) in December 2026.
 
-My path here is unusual. I hold a **PhD in Electrical Engineering from Ghent University** (integrated silicon photonics). After that I spent several years in **test and measurement**: photonics test engineering at IMEC, then applications and technical sales roles at Keysight, Sofics and Dennemeyer. I then worked as a **patent examiner at the European Patent Office**, where I examined more than 100 applications in electrical test and measurement from companies including Airbus, Texas Instruments, CATL and LG. Through all of it, the common thread has been measurement, the physics behind a signal, and turning noisy data into decisions.
+My path after the Ph.D. has been a bit unusual. After a stint as a photonics test engineer at [imec](https://www.imec-int.com/en), I spent several years in applications and technical sales roles at Dennemeyer, Sofics and Keysight Technologies. I then worked as a patent examiner at the [European Patent Office](https://www.epo.org/en), where I examined more than 100 patent applications in electrical test and measurement from companies including Airbus, Texas Instruments, Siemens and LG Energy Solution. Through all of it, the common thread has been measurement: the physics behind a signal, and turning noisy data into decisions.
 
-I complete an **MS in Data Science** at Lewis University in December 2026.
+Going forward, I want to build machine learning models that turn telemetry from physical hardware into decisions: health monitoring, fault detection and remaining useful life prediction for batteries, power electronics and other instrumented systems. I am most interested in models that respect the underlying physics, quantify their uncertainty, and hold up on real field data rather than only on clean lab benchmarks. Alongside this, I continue to work on patent information retrieval, using search and ranking models to find the prior art and technology trends that matter in batteries, BMS and photonics.
 
 ## What I work on
 
