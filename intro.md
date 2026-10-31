@@ -1,4 +1,4 @@
-# Thomas Ako, PhD
+# Thomas Ako, Ph.D.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/thomas8ako5/)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/ThomasAko)
@@ -13,7 +13,7 @@
 
 **Physics-informed machine learning for battery diagnostics.**
 
-I'm a data scientist in the Data Science and Learning division at **Argonne National Laboratory**, where I develop AI/ML models for lithium-ion battery diagnostics and prognostics.
+Welcome!I am a research engineer and data scientist in the Data Science and Learning division at [Argonne National Laboratory](https://www.anl.gov), where I develop AI/ML models for lithium-ion battery diagnostics and prognostics. I received a master's degree in Electrical Engineering from the [Royal Institute of Technology (KTH)](https://www.kth.se/en), Stockholm, Sweden and a Ph.D. in Electrical Engineering from [Ghent University](https://www.ugent.be/en), Ghent, Belgium. I am completing a master's in Data Science this December, at [Lewis University](https://www.lewisu.edu) in Romeoville, Illinois, USA. 
 
 My path here is unusual. I hold a **PhD in Electrical Engineering from Ghent University** (integrated silicon photonics). After that I spent several years in **test and measurement**: photonics test engineering at IMEC, then applications and technical sales roles at Keysight, Sofics and Dennemeyer. I then worked as a **patent examiner at the European Patent Office**, where I examined more than 100 applications in electrical test and measurement from companies including Airbus, Texas Instruments, CATL and LG. Through all of it, the common thread has been measurement, the physics behind a signal, and turning noisy data into decisions.
 
