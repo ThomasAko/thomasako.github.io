@@ -7,6 +7,10 @@
 [![Diagnosis notebook](https://img.shields.io/badge/Diagnosis-Notebook-5f6b7a?logo=jupyter&logoColor=white&style=for-the-badge)](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/QM7_DeepChem_Diagnosis.ipynb)
 [![Repository](https://img.shields.io/badge/GitHub-Repository-181717?logo=github&logoColor=white&style=for-the-badge)](https://github.com/ThomasAko/physics-constraints-qm7-qm9)
 
+:alt: Coulomb matrix heatmap for one molecule in QM7
+:width: 420px
+:align: center  
+
 ## Why it matters
 
 Density functional theory (DFT) computes molecular energies accurately, but its cost grows steeply with system size. A machine-learning surrogate trained on DFT results can screen candidate molecules orders of magnitude faster. The open question is whether physics can be built into such a surrogate, so that its predictions are physically consistent as well as accurate.
