@@ -2,13 +2,10 @@
 
 **Can adding a physical law to a neural network's loss help it predict molecular energies? Testing a virial-theorem penalty on 7,165 molecules turned into a lesson in checking whether a result can be trusted at all.**
 
-[Notebook](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/Physics_Constraints_QM7_to_QM9.ipynb) · [Diagnosis notebook](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/QM7_DeepChem_Diagnosis.ipynb) · [Repository](https://github.com/ThomasAko/physics-constraints-qm7-qm9)
-
-```{image} ../_static/figs/qm7/coulomb_matrix.png
-:alt: Coulomb matrix heatmap for one molecule in QM7
-:width: 420px
-:align: center
-```
+[![Open in Colab](https://img.shields.io/badge/Open%20in-Colab-F9AB00?logo=googlecolab&logoColor=white&style=for-the-badge)](https://colab.research.google.com/github/ThomasAko/physics-constraints-qm7-qm9/blob/main/Physics_Constraints_QM7_to_QM9.ipynb)
+[![View notebook](https://img.shields.io/badge/View-Notebook-2a5d8f?logo=jupyter&logoColor=white&style=for-the-badge)](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/Physics_Constraints_QM7_to_QM9.ipynb)
+[![Diagnosis notebook](https://img.shields.io/badge/Diagnosis-Notebook-5f6b7a?logo=jupyter&logoColor=white&style=for-the-badge)](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/QM7_DeepChem_Diagnosis.ipynb)
+[![Repository](https://img.shields.io/badge/GitHub-Repository-181717?logo=github&logoColor=white&style=for-the-badge)](https://github.com/ThomasAko/physics-constraints-qm7-qm9)
 
 ## Why it matters
 
@@ -76,6 +73,8 @@ For a molecule at equilibrium, 2⟨T⟩ + ⟨V⟩ = 0. I added two output heads 
 - **Training settings and representation mattered more than architecture.** The two-hour architecture search bought nothing; removing dropout and sorting the inputs mattered most.
 - **A useful physics term must be anchored to data and impossible to satisfy trivially.** The Virial penalty met neither requirement.
 - **Single runs are not evidence.** GPU training varied by about 1 kcal/mol from run to run, the same size as the Virial network's apparent effect.
+
+[Notebook](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/Physics_Constraints_QM7_to_QM9.ipynb) · [Diagnosis notebook](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/QM7_DeepChem_Diagnosis.ipynb) · [Repository](https://github.com/ThomasAko/physics-constraints-qm7-qm9)
 
 ## What I'd do next
 
