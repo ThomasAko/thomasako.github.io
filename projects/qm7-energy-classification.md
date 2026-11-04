@@ -7,9 +7,11 @@
 [![Diagnosis notebook](https://img.shields.io/badge/Diagnosis-Notebook-5f6b7a?logo=jupyter&logoColor=white&style=for-the-badge)](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/QM7_DeepChem_Diagnosis.ipynb)
 [![Repository](https://img.shields.io/badge/GitHub-Repository-181717?logo=github&logoColor=white&style=for-the-badge)](https://github.com/ThomasAko/physics-constraints-qm7-qm9)
 
+```{image} ../_static/figs/qm7/coulomb_matrix.png
 :alt: Coulomb matrix heatmap for one molecule in QM7
 :width: 420px
-:align: center  
+:align: center
+``` 
 
 ## Why it matters
 
