@@ -1,6 +1,8 @@
-# Can a physics constraint help a neural network classify molecular energies?
+# Physics constraints for molecular machine learning on QM7
 
-**Classifying 7,165 small molecules as high or low atomization energy from their Coulomb matrices, and testing whether adding the virial theorem to the loss helps a neural network.**
+**Can adding a physical law to a neural network's loss help it predict molecular energies? Testing a virial-theorem penalty on 7,165 molecules turned into a lesson in checking whether a result can be trusted at all.**
+
+[Notebook](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/Physics_Constraints_QM7_to_QM9.ipynb) · [Diagnosis notebook](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/QM7_DeepChem_Diagnosis.ipynb) · [Repository](https://github.com/ThomasAko/physics-constraints-qm7-qm9)
 
 ```{image} ../_static/figs/qm7/coulomb_matrix.png
 :alt: Coulomb matrix heatmap for one molecule in QM7
@@ -10,61 +12,74 @@
 
 ## Why it matters
 
-Density functional theory (DFT) computes molecular energies accurately, but its cost grows steeply with system size. A machine-learning surrogate trained on DFT results can screen candidate molecules orders of magnitude faster. The open question is whether physics can be built into such a surrogate so its predictions are not only accurate but physically consistent.
+Density functional theory (DFT) computes molecular energies accurately, but its cost grows steeply with system size. A machine-learning surrogate trained on DFT results can screen candidate molecules orders of magnitude faster. The open question is whether physics can be built into such a surrogate, so that its predictions are physically consistent as well as accurate.
 
 ## Setup
 
-- **Data:** the QM7 benchmark (via DeepChem/MoleculeNet), with 7,165 molecules of up to 23 atoms.
-- **Representation:** the **Coulomb matrix**. The diagonal holds the atomic self-energies (0.5·Z^2.4) and the off-diagonal entries hold the pairwise nuclear repulsion (ZᵢZⱼ/|Rᵢ−Rⱼ|). Each 23 × 23 matrix is flattened to 529 features and standardized.
-- **Task:** classify each molecule as above or below the median atomization energy. The median comes from the training set only, so no test information leaks in.
-- **Split:** DeepChem's own train/validation/test sets (5,470 / 684 / 684 molecules).
+- **Data:** QM7, 7,165 small organic molecules (up to 23 atoms) with DFT atomization energies, loaded from the original `qm7.mat` and split at random 80/10/10.
+- **Representation:** the **Coulomb matrix**. The diagonal holds the atomic self-energies (0.5·Z^2.4) and the off-diagonal entries the pairwise nuclear repulsion (ZᵢZⱼ/|Rᵢ−Rⱼ|). Each 23 × 23 matrix is flattened to 529 standardized features.
+- **Models:** linear and random forest baselines on atom counts, random forests and dense neural networks on the Coulomb matrix, and a network with a Virial theorem penalty.
 
-## Models
+## 1. A broken data pipeline
 
-1. **Random forest** (100 trees), a non-parametric baseline.
-2. **Funnel neural network**: 529 → 256 → 128 → 64 → 32 → 2, with dropout and 179k parameters.
-3. **Tuned neural network.** A Bayesian search (Keras Tuner, 412 trials over about two hours) settled on an unexpected *diamond* shape, 529 → 64 → 416 → 224 → 256 → 128 → 2, with 245k parameters. Repeated searches returned different architectures, which hints at a rugged loss landscape.
-4. **Physics-regularized versions of both networks.** I added two auxiliary output heads for kinetic energy ⟨T⟩ and potential energy ⟨V⟩, and penalized violations of the **virial theorem**, 2⟨T⟩ + ⟨V⟩ = 0:
+The first version loaded QM7 through DeepChem's `load_qm7` and classified molecules as high or low energy. Every model, from random forests to a network found by a two-hour architecture search, stalled near 60% accuracy.
 
-   *Loss* = *cross-entropy* + λ · mean(2T + V)², with λ = 0.01
+A composition only sanity check exposed the cause. Atomization energy is close to *extensive*: it is roughly a sum of contributions from each atom, so atom counts should predict it almost perfectly.
 
-## Results (test set, 684 molecules)
+| Diagnostic | Original `qm7.mat` | DeepChem data |
+|---|---|---|
+| R² of a linear model on atom counts | 0.992 | 0.189 |
+| Correlation of molecule size with energy | −0.971 | −0.267 |
+| Smallest molecule | 4 atoms, at least one carbon | 1–2 hydrogen atoms only |
 
-```{image} ../_static/figs/qm7/results.png
-:alt: Accuracy and F1 for the five models
-:width: 620px
+The features and labels did not match. On the original file, the same models with the same settings jump from about 60% to 98% accuracy.
+
+## 2. From classification to regression
+
+At 98%, classification can no longer tell models apart: atom counts alone reach 97.4%, and the remaining errors sit a median of 5.8 kcal/mol from the threshold, against 162 kcal/mol for a typical molecule. The study therefore predicts the energy itself and reports the mean absolute error (MAE) on 717 test molecules.
+
+```{image} ../_static/figs/qm7/results_regression.png
+:alt: Test MAE by model for QM7 atomization energy regression
+:width: 680px
 :align: center
 ```
 
-| Model | Accuracy | Precision (high) | Recall (high) | F1 |
-|---|---|---|---|---|
-| **Random forest** | **0.627** | **0.644** | 0.579 | **0.610** |
-| NN, funnel | 0.591 | 0.608 | 0.523 | 0.563 |
-| NN, tuned | 0.597 | 0.604 | 0.573 | 0.588 |
-| Physics-regularized NN, funnel | 0.614 | 0.627 | 0.576 | 0.600 |
-| Physics-regularized NN, tuned | 0.588 | 0.588 | 0.602 | 0.595 |
+| Model | MAE (kcal/mol) | RMSE (kcal/mol) |
+|---|---|---|
+| Mean predictor | 180.6 | 222.5 |
+| Linear model, atom counts | 16.3 | 21.1 |
+| Random forest, atom counts | 15.3 | 20.7 |
+| Random forest, Coulomb matrix | 11.9 | 18.3 |
+| Neural network (dropout, fixed learning rate) | 21.5 | 29.3 |
+| Neural network (no dropout, learning-rate schedule) | 15.2 | 19.7 |
+| **Random forest, sorted Coulomb matrix** | **10.5** | **15.6** |
+| Neural network, sorted Coulomb matrix | 12.7 | 16.6 |
+| Neural network + virial penalty, sorted | 13.9 | 18.3 |
+
+- **Settings carried over from classification broke the network.** With dropout and a fixed learning rate it did worse than a five-coefficient linear model. Dropout adds noise straight to the predicted value, which classification tolerates and precise regression does not.
+- **Atom ordering was a handicap.** Sorting each matrix by row norm, so the same position means the same kind of atom across molecules, cut the network's error by 17% and the random forest's by 11%. Only then did the network beat composition alone.
+
+## 3. The Virial theorem penalty
+
+For a molecule at equilibrium, 2⟨T⟩ + ⟨V⟩ = 0. I added two output heads for ⟨T⟩ and ⟨V⟩ and penalized violations of the theorem:
+
+*Loss* = MSE(energy) + λ · mean(2T + V)², with λ = 0.1
+
+**It gave no gain.** Across four runs, the virial network never beat the plain one; it was 0.2–1.5 kcal/mol worse.
+
+**It cannot help.** QM7 has no labels for ⟨T⟩ or ⟨V⟩, so nothing ties the heads to real values. Setting the ⟨V⟩ head to −2 times the ⟨T⟩ head makes the residual vanish for every molecule, whatever the network has learned. In the notebook, rewriting the trained head this way drives the residual to about 10⁻⁷, float32 rounding, without touching the energy prediction. Small residuals are therefore not evidence of physical consistency.
 
 ## What I took away
 
-- **The random forest beat every neural network.** With about 5,000 training molecules and a flattened representation, trees found the decision boundary more reliably than networks with 180–245k parameters. The networks reached about 98% training accuracy but about 60% on validation, a clear sign of overfitting.
-- **The physics term gave the funnel network a small lift, from 59.1% to 61.4%, but I wouldn't over-read it.** The gain is within the run-to-run spread I saw when re-training. And because ⟨T⟩ and ⟨V⟩ have no ground-truth labels, the network can satisfy the virial constraint trivially, for example by driving both toward zero. The near-zero residuals below can't tell that apart from genuine physics. Here the physics term behaves more like a regularizer on the shared layers than a real physical constraint.
-
-```{image} ../_static/figs/qm7/virial_residual.png
-:alt: Distribution of virial residuals 2T + V on the test set
-:width: 640px
-:align: center
-```
-
-- **The representation is the bottleneck.** Flattening the Coulomb matrix throws away its 2-D structure and makes it depend on atom ordering. It also says nothing directly about orbital hybridization or electronic shielding.
+- **Sanity-check the data before the models.** One composition-only baseline exposed a pipeline that had silently capped every result near 60%.
+- **Choose a task that can separate models.** Once the data was right, classification was too easy to measure anything.
+- **Training settings and representation mattered more than architecture.** The two-hour architecture search bought nothing; removing dropout and sorting the inputs mattered most.
+- **A useful physics term must be anchored to data and impossible to satisfy trivially.** The Virial penalty met neither requirement.
+- **Single runs are not evidence.** GPU training varied by about 1 kcal/mol from run to run, the same size as the Virial network's apparent effect.
 
 ## What I'd do next
 
-- **Make the physics constraint bite:** supervise ⟨T⟩ and ⟨V⟩ with computed values, or move to **regression** of the energy itself, where a continuous physical law can actually shape the predictions.
-- **Use a better representation:** sorted or eigenvalue Coulomb features, a CNN treating the matrix as an image, or a graph neural network.
-- **Reduce and structure the inputs:** PCA to denoise the 529 features, and clustering to find chemical families before classifying.
+- **Test a physics term that meets both requirements.** The energy loss of *Energy Loss Functions for Physical Systems* (NeurIPS 2025, [arXiv:2511.02087](https://arxiv.org/abs/2511.02087)) charges a predicted geometry the energy needed to deform it into the reference. It is anchored to the true interatomic distances and is zero only for the correct geometry. QM9 geometry relaxation with an equivariant graph network is the natural test.
+- **Put confidence intervals on the network results** with a multi-seed comparison.
 
-**Tools:** Python, DeepChem, RDKit, TensorFlow/Keras, Keras Tuner, scikit-learn, Google Colab
-
-```{note}
-TODO: link the notebook.
-```
+**Tools:** Python, TensorFlow/Keras, scikit-learn, NumPy/SciPy, DeepChem and RDKit (diagnosis), Google Colab
