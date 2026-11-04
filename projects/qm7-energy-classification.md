@@ -6,14 +6,7 @@
 [![View notebook](https://img.shields.io/badge/View-Notebook-2a5d8f?logo=jupyter&logoColor=white&style=for-the-badge)](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/Physics_Constraints_QM7_to_QM9.ipynb)
 [![Diagnosis notebook](https://img.shields.io/badge/Diagnosis-Notebook-5f6b7a?logo=jupyter&logoColor=white&style=for-the-badge)](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/QM7_DeepChem_Diagnosis.ipynb)
 [![Repository](https://img.shields.io/badge/GitHub-Repository-181717?logo=github&logoColor=white&style=for-the-badge)](https://github.com/ThomasAko/physics-constraints-qm7-qm9)
-
-
-```
-{image} ../_static/figs/qm7/coulomb_matrix.png
-:alt: Coulomb matrix heatmap for one molecule in QM7
-:width: 420px
-:align: center
-``` 
+ 
 
 ## Why it matters
 
@@ -24,6 +17,13 @@ Density functional theory (DFT) computes molecular energies accurately, but its 
 - **Data:** QM7, 7,165 small organic molecules (up to 23 atoms) with DFT atomization energies, loaded from the original `qm7.mat` and split at random 80/10/10.
 - **Representation:** the **Coulomb matrix**. The diagonal holds the atomic self-energies (0.5·Z^2.4) and the off-diagonal entries the pairwise nuclear repulsion (ZᵢZⱼ/|Rᵢ−Rⱼ|). Each 23 × 23 matrix is flattened to 529 standardized features.
 - **Models:** linear and random forest baselines on atom counts, random forests and dense neural networks on the Coulomb matrix, and a network with a Virial theorem penalty.
+
+```
+{image} ../_static/figs/qm7/coulomb_matrix.png
+:alt: Coulomb matrix heatmap for one molecule in QM7
+:width: 420px
+:align: center
+```
 
 ## 1. A broken data pipeline
 
