@@ -16,10 +16,9 @@ Density functional theory (DFT) computes molecular energies accurately, but its 
 
 - **Data:** QM7, 7,165 small organic molecules (up to 23 atoms) with DFT atomization energies, loaded from the original `qm7.mat` and split at random 80/10/10.
 - **Representation:** the **Coulomb matrix**. The diagonal holds the atomic self-energies (0.5·Z^2.4) and the off-diagonal entries the pairwise nuclear repulsion (ZᵢZⱼ/|Rᵢ−Rⱼ|). Each 23 × 23 matrix is flattened to 529 standardized features.
-- **Models:** linear and random forest baselines on atom counts, random forests and dense neural networks on the Coulomb matrix, and a network with a Virial theorem penalty.
+- **Models:** linear and random-forest baselines on atom counts, random forests and dense neural networks on the Coulomb matrix, and a network with a virial-theorem penalty.
 
-```
-{image} ../_static/figs/qm7/coulomb_matrix.png
+```{image} ../_static/figs/qm7/coulomb_matrix.png
 :alt: Coulomb matrix heatmap for one molecule in QM7
 :width: 420px
 :align: center
@@ -29,7 +28,7 @@ Density functional theory (DFT) computes molecular energies accurately, but its 
 
 The first version loaded QM7 through DeepChem's `load_qm7` and classified molecules as high or low energy. Every model, from random forests to a network found by a two-hour architecture search, stalled near 60% accuracy.
 
-A composition only sanity check exposed the cause. Atomization energy is close to *extensive*: it is roughly a sum of contributions from each atom, so atom counts should predict it almost perfectly.
+A composition-only sanity check exposed the cause. Atomization energy is close to *extensive*: it is roughly a sum of contributions from each atom, so atom counts should predict it almost perfectly.
 
 | Diagnostic | Original `qm7.mat` | DeepChem data |
 |---|---|---|
@@ -64,7 +63,7 @@ At 98%, classification can no longer tell models apart: atom counts alone reach 
 - **Settings carried over from classification broke the network.** With dropout and a fixed learning rate it did worse than a five-coefficient linear model. Dropout adds noise straight to the predicted value, which classification tolerates and precise regression does not.
 - **Atom ordering was a handicap.** Sorting each matrix by row norm, so the same position means the same kind of atom across molecules, cut the network's error by 17% and the random forest's by 11%. Only then did the network beat composition alone.
 
-## 3. The Virial theorem penalty
+## 3. The virial-theorem penalty
 
 For a molecule at equilibrium, 2⟨T⟩ + ⟨V⟩ = 0. I added two output heads for ⟨T⟩ and ⟨V⟩ and penalized violations of the theorem:
 
@@ -79,10 +78,8 @@ For a molecule at equilibrium, 2⟨T⟩ + ⟨V⟩ = 0. I added two output heads 
 - **Sanity-check the data before the models.** One composition-only baseline exposed a pipeline that had silently capped every result near 60%.
 - **Choose a task that can separate models.** Once the data was right, classification was too easy to measure anything.
 - **Training settings and representation mattered more than architecture.** The two-hour architecture search bought nothing; removing dropout and sorting the inputs mattered most.
-- **A useful physics term must be anchored to data and impossible to satisfy trivially.** The Virial penalty met neither requirement.
-- **Single runs are not evidence.** GPU training varied by about 1 kcal/mol from run to run, the same size as the Virial network's apparent effect.
-
-[Notebook](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/Physics_Constraints_QM7_to_QM9.ipynb) · [Diagnosis notebook](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/QM7_DeepChem_Diagnosis.ipynb) · [Repository](https://github.com/ThomasAko/physics-constraints-qm7-qm9)
+- **A useful physics term must be anchored to data and impossible to satisfy trivially.** The virial penalty met neither requirement.
+- **Single runs are not evidence.** GPU training varied by about 1 kcal/mol from run to run, the same size as the virial network's apparent effect.
 
 ## What I'd do next
 
@@ -90,3 +87,7 @@ For a molecule at equilibrium, 2⟨T⟩ + ⟨V⟩ = 0. I added two output heads 
 - **Put confidence intervals on the network results** with a multi-seed comparison.
 
 **Tools:** Python, TensorFlow/Keras, scikit-learn, NumPy/SciPy, DeepChem and RDKit (diagnosis), Google Colab
+
+[Notebook](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/Physics_Constraints_QM7_to_QM9.ipynb) · [Diagnosis notebook](https://github.com/ThomasAko/physics-constraints-qm7-qm9/blob/main/QM7_DeepChem_Diagnosis.ipynb) · [Repository](https://github.com/ThomasAko/physics-constraints-qm7-qm9)
+
+
