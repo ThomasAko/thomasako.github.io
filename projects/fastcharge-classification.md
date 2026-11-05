@@ -1,5 +1,7 @@
 # Predicting battery cycle life from the first 100 cycles
 
+[![Repository](https://img.shields.io/badge/GitHub-Repository-181717?logo=github&logoColor=white&style=for-the-badge)]([https://github.com/ThomasAko/physics-constraints-qm7-qm9](https://github.com/ThomasAko/battery-early-life-prediction))
+
 **Can we tell, after only 100 cycles, which cells will wear out early, and what is that prediction worth in dollars?**
 
 ```{image} ../_static/figs/battery/deltaq_vs_life.png
