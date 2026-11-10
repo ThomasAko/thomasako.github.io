@@ -48,6 +48,7 @@ Coulomb matrices, neural networks and a virial-theorem loss on 7,165 molecules.
 :::{grid-item-card} Battery curve-fitting agent
 :link: projects/battery-fit-agent
 :link-type: doc
+:img-top: _static/figs/battery-agent/ambiguous_fit_CH40.png
 LangGraph + local Llama agent that fits capacity-fade curves and flags outlier cells.
 :::
 
@@ -55,4 +56,4 @@ LangGraph + local Llama agent that fits capacity-fade curves and flags outlier c
 
 ## Get in touch
 
-I'm open to conversations about battery analytics, physics-informed ML, and technical patent advisory. The fastest way to reach me is [email](mailto:TODO) or [LinkedIn](https://www.linkedin.com/in/thomas8ako5/).
+I'm open to conversations about battery analytics, physics-informed ML, and technical patent advisory. The fastest way to reach me is [email](mailto:tom.ako@outlook.com) or [LinkedIn](https://www.linkedin.com/in/thomas8ako5/).
